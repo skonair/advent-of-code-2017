@@ -5,7 +5,7 @@
   (some #(= elm %) coll))
 
 (defn get-conns [id cs akku]
-    (filter #(not (or (= id %) (in? akku %)))  (get cs id)))
+    (filter #(not (or (= id %) (in? akku %))) (get cs id)))
 
 (defn groups [id cs]
   (loop [i id
@@ -22,9 +22,9 @@
          cnt 0]
     (if (empty? lst)
       cnt
-      (let [fst (first (first lst))
-            grp (groups fst cs)]
-      (recur (apply dissoc lst (set grp)) (inc cnt))))))
+      (recur
+        (apply dissoc lst (set (groups (first (first lst)) cs)))
+        (inc cnt)))))
 
 (def connections-by-file
   (apply merge
