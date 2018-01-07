@@ -39,13 +39,15 @@
       l
       (recur (run-round input l pos skip-size) (inc cnt)))))
 
-(defn dense-hash [ls input]
+(defn dense-hash
+  ([input] (dense-hash (range 256) input))
+  ([ls input]
   (str/join
     (map #(format "%02x" %)
       (map #(apply bit-xor %)
         (partition 16
           (sparse-hash ls
-            (concat (map int input) '(17 31 73 47 23))))))))
+            (concat (map int input) '(17 31 73 47 23)))))))))
 
 (def standard-list (range 256))
 (def puzzle-input "46,41,212,83,1,255,157,65,139,52,39,254,2,86,0,204")
