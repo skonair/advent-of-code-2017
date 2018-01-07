@@ -7,3 +7,7 @@
 (deftest run-through-test
   (testing "In the example above, the trip severity is 0*3 + 6*4 = 24."
     (is (= 24 (run-through test-firewall)))))
+
+(deftest uncaught-delay-test
+  (testing "You would need to delay to get through safely is 10."
+    (is (= 10 (uncaught-delay test-firewall)))))
